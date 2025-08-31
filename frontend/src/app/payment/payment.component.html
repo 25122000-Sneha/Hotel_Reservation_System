@@ -1,0 +1,20 @@
+
+<div class="payment-container">
+  <h2>Booking Summary</h2>
+
+  <div *ngIf="bookingDetails">
+    <p><strong>Check-In:</strong> {{bookingDetails.checkInDate}} </p>
+    <p><strong>Check-Out:</strong> {{bookingDetails.checkOutDate}} </p>
+    <p><strong>Guests:</strong> {{bookingDetails.noOfGuests}}</p>
+    <p><strong>Total Price:</strong> {{totalCost}} </p>
+    
+    <button class="btn btn-success" (click)="onProceedToPay()">Proceed to Pay</button>
+
+    <!-- <div id="paypal-button-container" *ngIf="showPaymentOptions" style="margin-top: 20px;"></div> -->
+     <ngx-paypal *ngIf="showPaymentOptions && payPalConfig" [config]="payPalConfig"></ngx-paypal>
+  </div>
+
+  <div *ngIf="!bookingDetails">
+    <p class="text-danger">No booking information found.</p>
+  </div>
+</div>

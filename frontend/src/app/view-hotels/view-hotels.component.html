@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    
+    <div class="tabs">
+      <ul>
+        <li *ngFor="let location of locationList$ | async" (click)="onCitySelect(location.city)">
+            {{location.city}}
+        </li>
+      </ul>
+    </div>
+    <div id="hotels-container" class="hotels-container hotel-cards">
+      <!-- Hotel cards will be dynamically inserted here -->
+      <div class="hotel-card" *ngFor="let hotel of hotelList$ | async">
+        <img [src]="'http://localhost:8000/'+hotel.imagePath" alt="{{hotel.hotelName}}">
+        <div class="card-content">
+            <h2>{{hotel.hotelName}}</h2>
+            <p>Location: {{hotel.location.city}}</p>
+            <!-- <p>Rooms Available: </p> -->
+            <p>Description: {{hotel.description}}</p>
+            <p>Rating: {{hotel.rating}}</p>
+            <!-- <button class="action-btn">Edit</button> -->
+             <!-- <button (click) = edit(hotel) class="btn btn-outline-warning">Update</button> -->
+            <button (click)="viewRooms(hotel.hotelId)" class="view-room-btn">View Rooms</button>
+        </div>
+      </div>
+    </div>
+    

@@ -1,0 +1,18 @@
+<div class="room-list">
+  <h2>{{hotel?.hotelName}}</h2>
+
+  <div class="room-grid">
+    <div class="room-card" *ngFor="let room of roomList$ | async">
+      <h3>{{room.roomType}}</h3>
+      <p><strong>Room Number:{{room.roomNumber}}</strong></p>
+      <p><strong>Price:{{room.rate}}</strong> </p>
+      <p>
+        <strong>Status:</strong>
+        <span>{{ room.status }}</span>
+      </p>
+      <ng-container *ngIf="roleName === 'Customer'">
+        <button (click)="bookNow(room.roomId)">Book Now</button>
+      </ng-container>
+    </div>
+  </div>
+</div>

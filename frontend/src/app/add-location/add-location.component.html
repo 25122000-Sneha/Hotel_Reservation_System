@@ -1,0 +1,38 @@
+
+<div class="banner">
+    <h2>Trivago</h2>
+</div>
+<div class="container2">
+    <div class="form" >
+        <form [formGroup] = "itemForm" (ngSubmit) = "onSubmit()">
+            <div>
+                <h5>Add Location</h5>
+                <hr>
+                <div class="mb-1">
+                    <label for="city" class="fw-bold form-label">City:</label>
+                    <input type="text" id="city" placeholder="Enter city" formControlName="city" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('city')?.hasError('required') && this.itemForm.get('city')?.touched" class="text-danger">
+                        City name is required
+                    </span>
+                </div>
+                <div>
+                    <label for="state" class="fw-bold form-label">State:</label>
+                    <input type="text" id="state" placeholder="Enter state" formControlName="state" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('state')?.hasError('required') && this.itemForm.get('state')?.touched" class="text-danger">
+                        State name is required
+                    </span>
+                </div> 
+                <button type="submit" class="btn btn-primary">Submit</button>
+               <ng-container *ngIf="showMsg">
+                    <div *ngIf="successMsg$ | async as success" class="alert alert-success">
+                        {{success}}
+                    </div>
+                    <div *ngIf="errorMsg$ | async as error" class="alert alert-danger">
+                        {{error}}
+                    </div>
+               </ng-container>
+                
+            </div>
+        </form>
+    </div>
+</div>

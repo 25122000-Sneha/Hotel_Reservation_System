@@ -1,0 +1,36 @@
+<div class="booking-container">
+  <h2>Book a Room</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="checkInDate">Check-In Date</label>
+      <input id="checkInDate" type="date" formControlName="checkInDate" />
+      <span *ngIf="this.itemForm.get('checkInDate')?.hasError('required') && this.itemForm.get('checkInDate')?.touched" class="text-danger">Please select check-in date</span>
+      <span *ngIf="this.itemForm.get('checkInDate')?.hasError('invalidDate') && this.itemForm.get('checkInDate')?.touched" class="text-danger">Check-In date should be in future</span>
+    </div>
+
+    <div class="form-group">
+      <label for="checkOutDate">Check-Out Date</label>
+      <input id="checkOutDate" type="date" formControlName="checkOutDate" />
+      <span *ngIf="this.itemForm.get('checkOutDate')?.hasError('required') && this.itemForm.get('checkOutDate')?.touched" class="text-danger">Please select check-out date</span>
+      <span *ngIf="this.itemForm.get('checkOutDate')?.hasError('invalidDate') && this.itemForm.get('checkOutDate')?.touched" class="text-danger">Check-Out date should be in future</span>
+    </div>
+
+    <div class="form-group">
+      <label for="guests">Number of Guests</label>
+      <input id="guests" type="number" formControlName="noOfGuests" />
+      <span *ngIf="this.itemForm.get('noOfGuests')?.hasError('required') && this.itemForm.get('noOfGuests')?.touched" class="text-danger">Number of guests is required</span>
+    </div>
+
+    <button type="submit" class="btn-primary">Book Now</button>
+    <ng-container *ngIf="showMsg">
+        <div *ngIf="this.successMsg$ | async as success" class="alert alert-success">
+            {{success}}
+        </div>
+        <div *ngIf="this.errorMsg$ | async as error" class="alert alert-danger">
+            {{error}}
+        </div>
+    </ng-container>
+  </form>
+</div>

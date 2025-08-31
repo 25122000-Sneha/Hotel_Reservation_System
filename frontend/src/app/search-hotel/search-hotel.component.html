@@ -1,0 +1,48 @@
+
+<!-- <div class="container mt-4">
+  <h4>Explore Hotels</h4>
+
+  <div class="form-group">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Filter by location" />
+        <button class="search-btn">
+        <i class="fa fa-search"></i>
+        </button>
+    </div>
+  </div>
+
+</div> -->
+
+
+
+<div class="container">
+    <h4>Explore Hotels</h4>
+
+    <div class="form-group">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="Filter by location, name...." #searchTxt/>
+          <button class="search-btn" (click)="filterHotels(searchTxt.value)">
+          <i class="fa fa-search"></i>
+          </button>
+      </div>
+    </div>
+    <div id="hotels-container" class="hotels-container hotel-cards">
+      <!-- Hotel cards will be dynamically inserted here -->
+      <div class="hotel-card" *ngFor="let hotel of filteredHotelList$ | async">
+        <img [src]="'http://localhost:8000/'+hotel.imagePath" alt="{{hotel.hotelName}}">
+        <div class="card-content">
+            <h2>{{hotel.hotelName}}</h2>
+            <p>Location: {{hotel.location.city}}</p>
+            <p>Description: {{hotel.description}}</p>
+            <p>Rating: {{hotel.rating}}</p>
+            <button class="view-room-btn" (click)="viewRooms(hotel.hotelId)">View Rooms</button>
+        </div>
+      </div>
+
+      <ng-container *ngIf="noResults">
+          <div *ngIf="errorMsg$ | async as error" class="no-results">
+              {{error}}
+          </div>
+      </ng-container>
+    </div>
+    

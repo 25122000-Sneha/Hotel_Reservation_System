@@ -1,0 +1,92 @@
+
+<div class="banner">
+    <h2>Trivago</h2>
+</div>
+<div class="container2">
+    <div class="form" >
+        <form [formGroup] = "itemForm" (ngSubmit) = "onSubmit()">
+            <div>
+                <h5>Add Hotel</h5>
+                <hr>
+                <div class="mb-1">
+                    <label for="image" class="fw-bold form-label">Image:</label>
+                    <input type="file" class="form-control" id="image" formControlName="file" (change) = "onFileSelected($event)">
+                </div>
+                <div class="mb-1">
+                    <label for="hotelName" class="fw-bold form-label">Hotel Name:</label>
+                    <input type="text" id="hotelName" placeholder="Enter hotel name" formControlName="hotelName" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('hotelName')?.hasError('required') && this.itemForm.get('hotelName')?.touched" class="text-danger">
+                        Hotel name is required
+                    </span>
+                </div>
+                <div>
+                    <label for="description" class="fw-bold form-label">Description:</label>
+                    <input type="text" id="description" placeholder="Enter description" formControlName="description" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('description')?.hasError('required') && this.itemForm.get('description')?.touched" class="text-danger">
+                        Description is required
+                    </span>
+                </div> 
+                <div>
+                    <label for="address" class="fw-bold form-label">Address:</label>
+                    <input type="text" id="address" placeholder="Enter address" formControlName="address" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('address')?.hasError('required') && this.itemForm.get('address')?.touched" class="text-danger">
+                        Address is required
+                    </span>
+                </div> 
+                <div>
+                    <label for="location" class="fw-bold form-label">Location:</label>
+                    <select id="location" formControlName="locationId" class="form-control">
+                        <option value="" hidden>Select location</option>
+                        <option [value]="location.locationId" *ngFor="let location of locationList$ | async">{{location.city}}</option>
+                    </select>
+                    <span *ngIf="this.itemForm.get('location')?.hasError('required') && this.itemForm.get('location')?.touched" class="text-danger">
+                        Please select location
+                    </span>
+                </div> 
+                <div>
+                    <label for="phoneNumber" class="fw-bold form-label">Phone number:</label>
+                    <input type="text" id="phoneNumber" placeholder="Enter phone number" formControlName="phoneNumber" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('phoneNumber')?.hasError('required') && this.itemForm.get('phoneNumber')?.touched" class="text-danger">
+                        Phone number is required
+                    </span>
+                    <span *ngIf="this.itemForm.get('phoneNumber')?.hasError('invalidPhoneNumber') && !this.itemForm.get('phoneNumber')?.hasError('required') && this.itemForm.get('phoneNumber')?.touched" class="text-danger">
+                        Phone number is invalid
+                    </span>
+                </div> 
+                <div>
+                    <label for="emailId" class="fw-bold form-label">Email:</label>
+                    <input type="text" id="emailId" placeholder="Enter email" formControlName="emailId" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('emailId')?.hasError('required') && this.itemForm.get('emailId')?.touched" class="text-danger">
+                        Email is required
+                    </span>
+                    <span *ngIf="this.itemForm.get('emailId')?.hasError('invalidEmail') && !this.itemForm.get('emailId')?.hasError('required') && this.itemForm.get('emailId')?.touched" class="text-danger">
+                        Email is invalid
+                    </span>
+                </div> 
+                <div>
+                    <label for="rating" class="fw-bold form-label">Rating:</label>
+                    <input type="number" id="rating" placeholder="Enter rating" formControlName="rating" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('rating')?.hasError('required') && this.itemForm.get('rating')?.touched" class="text-danger">
+                        Rating is required
+                    </span>
+                    <span *ngIf="this.itemForm.get('rating')?.hasError('min') && !this.itemForm.get('rating')?.hasError('required') && this.itemForm.get('rating')?.touched" class="text-danger">
+                        Minimum rating should be 0
+                    </span>
+                    <span *ngIf="this.itemForm.get('rating')?.hasError('max') && !this.itemForm.get('rating')?.hasError('required') && this.itemForm.get('rating')?.touched" class="text-danger">
+                        Maximum rating should be 5
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+               <ng-container *ngIf="showMsg">
+                    <div *ngIf="success$ | async as success" class="alert alert-success">
+                        {{success}}
+                    </div>
+                    <div *ngIf="error$ | async as error" class="alert alert-danger">
+                        {{error}}
+                    </div>
+               </ng-container>
+                
+            </div>
+        </form>
+    </div>
+</div>

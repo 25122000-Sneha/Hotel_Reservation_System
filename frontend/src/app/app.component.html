@@ -1,0 +1,63 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navbar">
+  <div class="logo">
+    <!-- <img src="assets/logo.png" alt="Logo"> -->
+    <div>
+      <div class="appName">Trivago</div>
+      <div class="slogan">Where comfort meets convenience</div>
+    </div>
+    <!-- <div class="detail" *ngIf="IsLoggin">
+      <div class="welcome">Welcome {{userName}}</div>
+      <div class="role">Role : {{roleName}}</div>
+    </div> -->
+  </div>
+
+
+
+  <div class="navbar-options" style="color: white;" *ngIf="!showPostRoom">
+    
+
+
+
+    <div class="newUser">
+      <div *ngIf="isLoggedIn">
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['add-location']">Add location</a>
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['add-hotel']">Add hotel</a>
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['view-hotels']">View hotels</a>
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['manage-users']">Manage Users</a>
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['view-reservations']">View Reservations</a>
+        <a *ngIf="roleName === 'Customer'" [routerLink]="['search-hotel']">Search Hotel</a>
+      </div>
+      <div>
+        <a class="homeBtn" [routerLink]="['home']">Home</a>
+        <a class="loginBtn" *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</a>
+        <a class="signUpBtn" *ngIf="!isLoggedIn" [routerLink]="['/register']">Register</a>
+      </div>
+    </div>
+    <div class="logout">
+      <div *ngIf="isLoggedIn"><a (click)="logout()" [routerLink]="['/home']">Logout</a></div>
+    </div>
+  </div>
+
+  <!--Navbar for view rooms page-->
+  <div class="navbar-options" style="color: white;" *ngIf="showPostRoom">
+    <div class="newUser">
+      <div *ngIf="isLoggedIn">
+        <a *ngIf="roleName === 'Admin'" [routerLink]="['hotels', hotelId, 'post-room']">Post Room</a>
+        <a *ngIf="roleName === 'Admin' || roleName === 'Customer'" (click) = "goBack()" class="back-btn">Back</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<body>
+  <div>
+
+    <router-outlet>
+    </router-outlet>
+  </div>
+
+</body>

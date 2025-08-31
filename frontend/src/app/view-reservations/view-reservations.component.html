@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>View Reservations</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Sr. no.</th>
+        <th>Check-in Date</th>
+        <th>Check-out Date</th>
+        <th>No of guests</th>
+        <th>Room</th>
+        <th>Hotel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservationList$ | async; let i = index">
+        <!-- <pre>{{ reservationList$ | async | json }}</pre> -->
+        <td>{{i+1}}</td>
+        <td>{{reservation.checkInDate | date:'mediumDate'}}</td>
+        <td>{{reservation.checkOutDate | date:'mediumDate'}}</td>
+        <td>{{reservation.noOfGuests}}</td>
+        <td>{{reservation.room.roomType}}</td>
+        <td>{{reservation.room.hotel.hotelName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

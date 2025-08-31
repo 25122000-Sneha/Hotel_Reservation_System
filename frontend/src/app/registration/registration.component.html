@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>registration</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <!-- <img src="assets/logo.png" alt="Logo" class="logo"> -->
+      <h1 class="app-name">Trivago</h1>
+      <p class="slogan">Where comfort meets convenience</p>
+    </header>
+    <div class="content">
+      <div class="left-half">
+        <form [formGroup] = "itemForm" class="register-form" (ngSubmit) = "onSubmit()">
+            <h2>Registration form</h2>
+            <div class="mb-1">
+                <label for="userName" class="fw-bold form-label">Username</label>
+                <input type="text" id="userName" placeholder="Enter username" formControlName="userName" class="form-control"/>
+                <span *ngIf="this.itemForm.get('userName')?.hasError('required') && this.itemForm.get('userName')?.touched" class="text-danger">
+                    Username is required
+                </span>
+                <span *ngIf="this.itemForm.get('userName')?.hasError('invalidUsername')" class="text-danger">
+                   Username should not contain spaces
+                </span>
+            </div>
+            <div class="mb-1">
+                <label for="password" class="fw-bold form-label">Password</label>
+                <input type="text" id="password" placeholder="Enter password" formControlName="password" class="form-control"/>
+                <span *ngIf="this.itemForm.get('password')?.hasError('required') && this.itemForm.get('password')?.touched" class="text-danger">
+                    Password is required
+                </span>
+                <span *ngIf="this.itemForm.get('password')?.hasError('invalidPassword') && !this.itemForm.get('password')?.hasError('required') && this.itemForm.get('password')?.touched" class="text-danger">
+                  Password is invalid
+                </span>
+            </div>
+            <div class="mb-1">
+                <label for="email" class="fw-bold form-label">Email</label>
+                <input type="text" id="email" placeholder="Enter email" formControlName="email" class="form-control"/>
+                <span *ngIf="this.itemForm.get('email')?.hasError('required') && this.itemForm.get('email')?.touched" class="text-danger">
+                    Email is required
+                </span>
+                <span *ngIf="this.itemForm.get('email')?.hasError('invalidEmail') && !this.itemForm.get('email')?.hasError('required') && this.itemForm.get('email')?.touched" class="text-danger">
+                    Email is invalid
+                </span>
+            </div>
+            <div class="mb-1">
+                <label for="role" class="fw-bold form-label">Role</label>
+                <select formControlName="role" class="form-control">
+                    <option value="">Please select role</option>
+                    <option>Admin</option>
+                    <option>Customer</option>
+                </select>
+                <span *ngIf="this.itemForm.get('role')?.hasError('required') && this.itemForm.get('role')?.touched" class="text-danger">
+                    Role is required
+                </span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <ng-container *ngIf="showMsg">
+              <div *ngIf="successMsg$ | async as success" class="alert alert-success">
+                {{success}}
+              </div>
+              <div *ngIf="errorMsg$ | async as error" class="alert alert-danger">
+                {{error}}
+              </div>
+            </ng-container>
+        </form>
+       
+      </div>
+
+
+      <div class="right-half">
+        <img src="assets/register.jpg" alt="Image" class="image">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

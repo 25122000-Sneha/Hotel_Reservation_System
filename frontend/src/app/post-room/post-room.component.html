@@ -1,0 +1,67 @@
+
+<!-- <div class="banner">
+    <h2>Trivago</h2>
+</div> -->
+<div class="container2">
+    <div class="form" >
+        <form [formGroup] = "itemForm" (ngSubmit) = "onSubmit()">
+            <div>
+                <h5>Add Room</h5>
+                <hr>
+                <div class="mb-1">
+                    <label for="roomNumber" class="fw-bold form-label">Room Number:</label>
+                    <input type="text" id="roomNumber" placeholder="Enter room number" formControlName="roomNumber" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('roomNumber')?.hasError('required') && this.itemForm.get('roomNumber')?.touched" class="text-danger">
+                        Room number is required
+                    </span>
+                </div>
+                <div>
+                    <label for="roomType" class="fw-bold form-label">Type:</label>
+                    <!-- <input type="text" id="roomType" placeholder="Enter room type" formControlName="roomType" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('roomType')?.hasError('required') && this.itemForm.get('roomType')?.touched" class="text-danger">
+                        Room type is required
+                    </span> -->
+                    <select id="roomType" formControlName="roomType" class="form-control">
+                        <option value="" hidden>Select room type</option>
+                        <option value="Delux">Delux</option>
+                        <option value="Single">Single</option>
+                        <option value="Suite">Suite</option>
+                    </select>
+                    <span *ngIf="this.itemForm.get('roomType')?.hasError('required') && this.itemForm.get('roomType')?.touched" class="text-danger">
+                        Please select room type
+                    </span>
+
+                </div> 
+                <div>
+                    <label for="rate" class="fw-bold form-label">Price per night:</label>
+                    <input type="number" id="rate" placeholder="Enter rate" formControlName="rate" class="form-control"/>
+                    <span *ngIf="this.itemForm.get('rate')?.hasError('required') && this.itemForm.get('rate')?.touched" class="text-danger">
+                        Price is required
+                    </span>
+                </div> 
+                <div>
+                    <label for="status" class="fw-bold form-label">Status:</label>
+                    <select id="status" formControlName="status" class="form-control">
+                        <option value="" hidden>Select status</option>
+                        <option value="Available">Available</option>
+                        <option value="Not Available">Not Available</option>
+                    </select>
+                    <span *ngIf="this.itemForm.get('status')?.hasError('required') && this.itemForm.get('status')?.touched" class="text-danger">
+                        Please select status
+                    </span>
+                </div> 
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+               <ng-container *ngIf="showMsg">
+                    <div *ngIf="successMsg$ | async as success" class="alert alert-success">
+                        {{success}}
+                    </div>
+                    <div *ngIf="errorMsg$ | async as error" class="alert alert-danger">
+                        {{error}}
+                    </div>
+               </ng-container>
+                
+            </div>
+        </form>
+    </div>
+</div>
