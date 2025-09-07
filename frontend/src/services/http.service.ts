@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -57,6 +57,11 @@ export class HttpService {
     return this.http.post(`${this.apiUrl}/api/admin/add-hotel`, details);
   }
 
+  getAllHotels(page: number = 0, size: number = 3):Observable<any>{
+    let params = new HttpParams().set('page', page).set( 'size', size);
+    return this.http.get(`${this.apiUrl}/api/customer/hotels`, { params });
+  }
+
   getHotelsByLocation(city: any): Observable<any>{
     return this.http.get(`${this.apiUrl}/api/admin/view-hotels/${city}`);
   }
@@ -73,8 +78,11 @@ export class HttpService {
     return this.http.post(`${this.apiUrl}/api/admin/hotels/${hotelId}/add-room`, roomDetails);
   }
 
-  filterHotels(searchStr: any): Observable<any>{
-    return this.http.get(`${this.apiUrl}/api/customer/search-hotels?value=${searchStr}`);
+  filterHotels(searchStr: any, page:number = 0, size:number = 3): Observable<any>{
+    let params = new HttpParams().set('value', searchStr)
+                                  .set('page', page)
+                                  .set('size', size);
+    return this.http.get(`${this.apiUrl}/api/customer/search-hotels`, { params }); 
   }
 
   bookRoom(details: any) : Observable<any>{

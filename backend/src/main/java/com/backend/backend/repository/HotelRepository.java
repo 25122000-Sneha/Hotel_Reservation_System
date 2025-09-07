@@ -2,6 +2,8 @@ package com.backend.backend.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,5 +17,5 @@ public interface HotelRepository extends JpaRepository<Hotel, Long>{
 
 
     @Query("SELECT H from Hotel H where lower(H.location.city) like lower(concat('%', :value, '%')) or lower(H.location.state) like lower(concat('%', :value, '%')) or lower(H.hotelName) like lower(concat('%', :value, '%'))")
-    public List<Hotel> searchHotel(String value);
+    public Page<Hotel> searchHotel(String value, Pageable pageable);
 }

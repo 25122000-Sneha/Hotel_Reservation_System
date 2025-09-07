@@ -52,7 +52,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/api/admin/add-location").hasAuthority("Admin")
                     .requestMatchers(HttpMethod.POST, "/api/admin/add-hotel").hasAuthority("Admin")
                     .requestMatchers(HttpMethod.GET, "/api/admin/locations").hasAuthority("Admin")
-                    .requestMatchers(HttpMethod.GET, "/api/admin/hotels").hasAuthority("Admin")
+                    .requestMatchers(HttpMethod.GET, "/api/customer/hotels").hasAuthority("Customer")
                     .requestMatchers(HttpMethod.GET, "/api/admin/view-hotels/{cityName}").hasAuthority("Admin")
                     .requestMatchers(HttpMethod.POST, "/api/admin/hotels/{hotelId}/add-room").hasAnyAuthority("Admin")
                     .requestMatchers(HttpMethod.GET, "/api/admin/hotels/{hotelId}/rooms").hasAnyAuthority("Admin", "Customer")

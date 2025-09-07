@@ -1,19 +1,4 @@
 
-<!-- <div class="container mt-4">
-  <h4>Explore Hotels</h4>
-
-  <div class="form-group">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Filter by location" />
-        <button class="search-btn">
-        <i class="fa fa-search"></i>
-        </button>
-    </div>
-  </div>
-
-</div> -->
-
-
 
 <div class="container">
     <h4>Explore Hotels</h4>
@@ -44,5 +29,12 @@
               {{error}}
           </div>
       </ng-container>
+      <div class="pagination-controls" *ngIf="totalElements > pageSize">
+        <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+
+        <span>Page {{currentPage + 1}} of {{totalPages()}}</span>
+
+        <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage + 1 >= totalPages()">Next</button>
+      </div>
     </div>
     

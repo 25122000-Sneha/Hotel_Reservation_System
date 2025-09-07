@@ -8,7 +8,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,8 +60,8 @@ public class HotelServiceImpl implements HotelService{
     }
 
 
-    public List<Hotel> getAllHotels(){
-        List<Hotel> hotels = hotelRepository.findAll();
+    public Page<Hotel> getAllHotels(Pageable pageable){
+        Page<Hotel> hotels = hotelRepository.findAll(pageable);
         return hotels;
     }
 
@@ -71,8 +74,8 @@ public class HotelServiceImpl implements HotelService{
         return null;
     }
 
-    public List<Hotel> searchHotel(String value){
-        List<Hotel> hotelList = hotelRepository.searchHotel(value);
+    public Page<Hotel> searchHotel(String value, Pageable pageable){
+        Page<Hotel> hotelList = hotelRepository.searchHotel(value, pageable);
         return hotelList;
     }
 

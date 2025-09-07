@@ -116,10 +116,7 @@ public class AdminController {
         return new ResponseEntity<>(hotelList, HttpStatus.OK);
     }
 
-    @GetMapping("/api/admin/hotels")
-    public ResponseEntity<List<Hotel>> getAllHotels() {
-        return new ResponseEntity<>(hotelService.getAllHotels(), HttpStatus.OK);
-    }
+    
     
     @GetMapping("/api/admin/hotels/{hotelId}/rooms")
     public ResponseEntity<List<Room>> getRoomsByHotel(@PathVariable Long hotelId) {

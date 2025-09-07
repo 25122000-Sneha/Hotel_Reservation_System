@@ -51,6 +51,50 @@
   .filter-section {
     margin-bottom: 20px;
   }
+
+ .pagination-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pagination-controls button {
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgb(13 110 253 / 0.4);
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #084298;
+  border-color: #084298;
+  box-shadow: 0 3px 6px rgb(8 66 152 / 0.6);
+}
+
+.pagination-controls button:disabled {
+  background-color: #cfe2ff;
+  border-color: #cfe2ff;
+  color: #6c757d;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-weight: 600;
+  font-size: 15px;
+  color: #212529;
+}
+
+
+
   
   /* .hotel-cards {
     display: grid;

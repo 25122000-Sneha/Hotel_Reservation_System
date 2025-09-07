@@ -52,11 +52,11 @@ export class LoginComponent {
       this.httpService.loginUser(this.itemForm.value).subscribe(
         (data: any) => {
           //console.log(data);
-          this.authService.saveUserName(data.userName);
+          //this.authService.saveUserName(data.userName);
           this.authService.saveToken(data.token);
-          this.authService.saveEmail(data.email);
-          this.authService.saveRole(data.role);
-          this.authService.saveUserId(data.userId);
+          //this.authService.saveEmail(data.email);
+          //this.authService.saveRole(data.role);
+          //this.authService.saveUserId(data.userId);
           //this.router.navigateByUrl('/home')
           if(this.authService.getRole === 'Admin'){
             this.router.navigateByUrl('/view-hotels');
